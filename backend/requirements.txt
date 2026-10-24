@@ -1,0 +1,17 @@
+# Runtime
+fastapi==0.115.6
+uvicorn[standard]==0.32.1
+SQLAlchemy==2.0.36
+alembic==1.14.0
+psycopg2-binary==2.9.10
+pydantic==2.10.3
+pydantic-settings==2.6.1
+python-multipart==0.0.19
+anthropic==2.1.0
+pillow==13.0.0
+rapidocr-onnxruntime==1.4.4
+opencv-python-headless==5.0.0.93
+
+# Testing
+pytest==8.3.4
+httpx==0.28.1

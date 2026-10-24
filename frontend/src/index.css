@@ -1,0 +1,85 @@
+@import 'tailwindcss';
+
+/* Design tokens. These map exactly to the brand palette:
+   primary #0F766E (deep teal), secondary #475569 (slate), accent #EAB308 (honey),
+   ink #1E293B (main text), line #E2E8F0 (borders). */
+@theme {
+  --color-primary: #0f766e;
+  --color-primary-hover: #115e59;
+  --color-primary-soft: #f0fdfa;
+  --color-secondary: #475569;
+  --color-accent: #eab308;
+  --color-accent-soft: #fefce8;
+  --color-ink: #1e293b;
+  --color-line: #e2e8f0;
+  --font-sans: 'Inter', 'Noto Sans Khmer', ui-sans-serif, system-ui, sans-serif;
+  --font-khmer: 'Noto Sans Khmer', 'Khmer OS Battambang', 'Inter', sans-serif;
+}
+
+@layer base {
+  html {
+    color-scheme: light;
+  }
+  body {
+    @apply bg-white text-ink antialiased;
+  }
+  /* Khmer script needs extra line height for stacked vowels and subscripts. */
+  :lang(km) {
+    font-family: var(--font-khmer);
+    line-height: 1.75;
+  }
+}
+
+/* Reusable component classes. @utility lets them be composed with @apply and variants. */
+@utility btn {
+  @apply inline-flex items-center justify-center gap-2 rounded-lg px-4 py-2 text-sm font-medium transition-colors
+    focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary
+    disabled:cursor-not-allowed disabled:opacity-60;
+}
+
+@utility btn-primary {
+  @apply btn bg-primary text-white shadow-sm hover:bg-primary-hover;
+}
+
+@utility btn-secondary {
+  @apply btn border border-line bg-white text-ink shadow-sm hover:bg-slate-50;
+}
+
+@utility btn-danger {
+  @apply btn bg-red-600 text-white shadow-sm hover:bg-red-700 focus-visible:outline-red-600;
+}
+
+@utility btn-ghost {
+  @apply btn px-2 text-secondary hover:bg-slate-100 hover:text-ink;
+}
+
+@utility icon-btn {
+  @apply inline-flex h-8 w-8 items-center justify-center rounded-md text-secondary transition-colors
+    hover:bg-slate-100 hover:text-ink focus-visible:outline-2 focus-visible:outline-primary;
+}
+
+@utility card {
+  @apply rounded-xl border border-line bg-white shadow-sm;
+}
+
+@utility field-label {
+  @apply mb-1 block text-sm font-medium text-ink;
+}
+
+@utility field-input {
+  @apply block w-full rounded-lg border border-line bg-white px-3 py-2 text-sm text-ink shadow-sm
+    placeholder:text-slate-400 focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/20
+    disabled:bg-slate-50;
+}
+
+.field-input[aria-invalid='true'] {
+  @apply border-red-500 focus:border-red-500 focus:ring-red-500/20;
+}
+
+@utility field-error {
+  @apply mt-1 text-xs text-red-600;
+}
+
+dialog::backdrop {
+  background: rgb(15 23 42 / 0.45);
+}
